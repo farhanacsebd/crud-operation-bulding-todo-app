@@ -4,6 +4,7 @@ const textInput = document.getElementById('textInput');
 const dateInput = document.getElementById('dateInput');
 const textareaInput = document.getElementById('textareaInput');
 const tasks = document.getElementById('tasks');
+const add = document.getElementById('add');
 const msg = document.querySelector('.msg');
 
 
@@ -26,6 +27,13 @@ function  formValidation(){
         // console.log('success');
         msg.innerHTML ="";
         acceptData()
+
+        add.setAttribute("data-bs-dismiss","modal");
+        add.click()
+    
+        (()=>{
+            add.setAttribute("data-bs-dismiss","");
+        })()
     }
 }
 
@@ -40,6 +48,7 @@ function acceptData(){
     data["description"] = textareaInput.value;
 
     createTasks()
+
 }
 
 
@@ -52,7 +61,7 @@ function createTasks(){
     <p>${data.description}</p>
     <span class="options">
         <i class="fas fa-edit"></i>
-        <i class="fas fa-trash-alt"></i>
+        <i onclick="delete" class="fas fa-trash-alt"></i>
     </span>
   </div>
     `;
@@ -63,3 +72,7 @@ function createTasks(){
     dateInput.value = ""; 
     textareaInput.value = ""; 
 }
+
+
+
+// delete btn 
