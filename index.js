@@ -31,6 +31,7 @@ function  formValidation(){
         add.setAttribute("data-bs-dismiss","modal");
         add.click()
     
+    //Es6 formula apply as like as function 
         (()=>{
             add.setAttribute("data-bs-dismiss","");
         })()
@@ -60,8 +61,8 @@ function createTasks(){
     <span class="small text-secondary">${data.date}</span>
     <p>${data.description}</p>
     <span class="options">
-        <i class="fas fa-edit"></i>
-        <i onclick="delete" class="fas fa-trash-alt"></i>
+        <i onclick="editTasks(this)" class="fas fa-edit"></i>
+        <i onclick="deleteTasks(this)" class="fas fa-trash-alt"></i>
     </span>
   </div>
     `;
@@ -74,5 +75,14 @@ function createTasks(){
 }
 
 
-
 // delete btn 
+
+function deleteTasks(e){
+    e.parentElement.parentElement.remove();
+}
+
+
+// edit the function
+function editTasks(e){
+    
+}
