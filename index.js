@@ -61,7 +61,7 @@ function createTasks(){
     <span class="small text-secondary">${data.date}</span>
     <p>${data.description}</p>
     <span class="options">
-        <i onclick="editTasks(this)" class="fas fa-edit"></i>
+        <i onclick="editTasks(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
         <i onclick="deleteTasks(this)" class="fas fa-trash-alt"></i>
     </span>
   </div>
@@ -84,5 +84,12 @@ function deleteTasks(e){
 
 // edit the function
 function editTasks(e){
-    
+    let selectValue = e.parentElement.parentElement;
+
+    textInput.value = selectValue.children[0].innerHTML; 
+    dateInput.value = selectValue.children[1].innerHTML; 
+    textareaInput.value = selectValue.children[2].innerHTML; 
+
+// remove the previoous tasks
+    selectValue.remove();
 }
