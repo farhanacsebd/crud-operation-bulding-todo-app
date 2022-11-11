@@ -13,11 +13,36 @@
 <body>
     <div class="app">
         <h4 class="mb-3 fw-bold">Todo App</h4>
-        <div id="addNew">
+        <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
             <span>Add New Task</span>
             <i class="fas fa-plus"></i>
         </div>
         <h5 class="text-center my-3 fw-bold">Tasks</h5>
+
+  <!-- Modal -->
+  <form class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <p>Task Title</p> 
+          <input class="form-control" type="text" name="" id="textInput"><br>
+          <p>Due Date</p>
+          <input class="form-control" type="date" name="" id="dateInput"><br>
+          <p>Description</p>
+          <textarea class="form-control" name="" id="textareaInput" cols="30" rows="5"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-warning fw-bold">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
         <div id="tasks">
             <div>
                 <span class="fw-bold">Task 1</span>
