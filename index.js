@@ -56,4 +56,10 @@ function createTasks(){
     </span>
   </div>
     `;
+
+
+// remove the value from the input field 
+    textInput.value = ""; 
+    dateInput.value = ""; 
+    textareaInput.value = ""; 
 }
