@@ -3,6 +3,7 @@ const form = document.getElementById('form');
 const textInput = document.getElementById('textInput');
 const dateInput = document.getElementById('dateInput');
 const textareaInput = document.getElementById('textareaInput');
+const tasks = document.getElementById('tasks');
 const msg = document.querySelector('.msg');
 
 
@@ -11,24 +12,48 @@ const msg = document.querySelector('.msg');
 form.addEventListener('submit',function(e){
     e.preventDefault()
     formValidation()
+    // console.log('hello');
 })
 
 
 // form Validation function
 function  formValidation(){
     if(textInput.value === ''){
-        console.log('fail');
+        // console.log('fail');
         msg.innerHTML = `Task cannot be blank`
     }
     else{
-        console.log('success');
+        // console.log('success');
         msg.innerHTML ="";
+        acceptData()
     }
 }
 
-
+// data store
 let data = {};
 
+
+// accept data
 function acceptData(){
+    data["text"] = textInput.value;
+    data["date"] = dateInput.value;
+    data["description"] = textareaInput.value;
+
+    createTasks()
+}
+
+
+function createTasks(){
+    tasks.innerHTML += `
     
+    <div>
+    <span class="fw-bold">${data.text}</span>
+    <span class="small text-secondary">${data.date}</span>
+    <p>${data.description}</p>
+    <span class="options">
+        <i class="fas fa-edit"></i>
+        <i class="fas fa-trash-alt"></i>
+    </span>
+  </div>
+    `;
 }
