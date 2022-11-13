@@ -39,17 +39,21 @@ function  formValidation(){
 }
 
 // data store
-let data = {};
+let data = [];
 
 
 // accept data
 function acceptData(){
-    data["text"] = textInput.value;
-    data["date"] = dateInput.value;
-    data["description"] = textareaInput.value;
+    data.push({
+        text : textInput.value,
+        date : dateInput.value,
+        description : textareaInput.value,
+    })
+
+    localStorage.setItem('data',JSON.stringify(data))
 
     createTasks()
-
+    // console.log(data);
 }
 
 
