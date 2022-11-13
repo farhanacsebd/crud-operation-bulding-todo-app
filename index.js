@@ -34,7 +34,7 @@ function  formValidation(){
     //Es6 formula apply as like as function 
         (()=>{
             add.setAttribute("data-bs-dismiss","");
-        })()
+        })();
     }
 }
 
@@ -50,7 +50,8 @@ function acceptData(){
         description : textareaInput.value,
     })
 
-    localStorage.setItem('data',JSON.stringify(data))
+  //localstorage setdata 
+    localStorage.setItem('data',JSON.stringify(data));
 
     createTasks()
     // console.log(data);
@@ -58,18 +59,22 @@ function acceptData(){
 
 
 function createTasks(){
-    tasks.innerHTML += `
+    tasks.innerHTML = "";
+    data.map((x,y) => {
+       return ( tasks.innerHTML += `
+       <div id=${y}>
+       <span class="fw-bold">${x.text}</span>
+       <span class="small text-secondary">${x.date}</span>
+       <p>${x.description}</p>
+       <span class="options">
+           <i onclick="editTasks(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+           <i onclick="deleteTasks(this)" class="fas fa-trash-alt"></i>
+       </span>
+     </div>
+       `);     
+    })
     
-    <div>
-    <span class="fw-bold">${data.text}</span>
-    <span class="small text-secondary">${data.date}</span>
-    <p>${data.description}</p>
-    <span class="options">
-        <i onclick="editTasks(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-        <i onclick="deleteTasks(this)" class="fas fa-trash-alt"></i>
-    </span>
-  </div>
-    `;
+   
 
 
 // remove the value from the input field 
@@ -83,6 +88,10 @@ function createTasks(){
 
 function deleteTasks(e){
     e.parentElement.parentElement.remove();
+    data.splice(e.parentElement.parentElement.id,1)
+
+    localStorage.setItem('data',JSON.stringify(data))
+    console.log(data);
 }
 
 
@@ -95,5 +104,13 @@ function editTasks(e){
     textareaInput.value = selectValue.children[2].innerHTML; 
 
 // remove the previoous tasks
-    selectValue.remove();
+    // selectValue.remove();
+    deleteTasks(e);
 }
+
+
+(() =>{
+    data = JSON.parse(localStorage.getItem('data')) || [];
+    createTasks()
+    console.log(data);
+})();
